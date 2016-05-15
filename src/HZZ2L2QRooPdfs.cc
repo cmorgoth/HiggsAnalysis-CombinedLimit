@@ -12,9 +12,43 @@
 using namespace RooFit;
 using namespace std; 
 
+
+//HighMass Diphoton
+ClassImp(RooHMDiphoton);
+
+RooHMDiphoton::RooHMDiphoton(){};
+
+RooHMDiphoton::RooHMDiphoton(const char *name, const char *title,
+			     RooAbsReal& _x,
+			     RooAbsReal& _a,
+			     RooAbsReal& _b
+			     ) :
+  RooAbsPdf(name,title),
+  x("x","x",this,_x),
+  a("a","a",this,_a),
+  b("b","b",this,_b)
+  
+{
+};
+
+RooHMDiphoton::RooHMDiphoton(const RooHMDiphoton& other, const char* name) :
+  RooAbsPdf(other,name),
+  x("x",this,other.x),
+  a("a",this,other.a),
+  b("b",this,other.b)
+{
+};
+
+double RooHMDiphoton::evaluate() const
+{
+  if ( x < 0 ) return 0.0;
+  return TMath::Power( x, a+b*TMath::Log(x) );
+  
+};
+
 ClassImp(RooCB)
 
-  RooCB::RooCB(){}
+RooCB::RooCB(){}
 
 RooCB::RooCB(const char *name, const char *title,
 	     RooAbsReal& _x,
@@ -22,7 +56,7 @@ RooCB::RooCB(const char *name, const char *title,
 	     RooAbsReal& _width,
 	     RooAbsReal& _alpha,
 	     RooAbsReal& _n,
-              RooAbsReal& _theta
+	     RooAbsReal& _theta
 	     ) :
   RooAbsPdf(name,title),
   x("x","x",this,_x),
@@ -107,7 +141,7 @@ double RooCB::evaluate() const
  double RooDoubleCB::evaluate() const 
  { 
    double t = (x-mean)/width;
-   if(t>-alpha1 && t<alpha2){
+   if(t>=-alpha1 && t<=alpha2){
      return exp(-0.5*t*t);
    }else if(t<-alpha1){
      double A1 = pow(n1/fabs(alpha1),n1)*exp(-alpha1*alpha1/2);
