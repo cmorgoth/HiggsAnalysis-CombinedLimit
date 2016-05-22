@@ -42,6 +42,7 @@
 	<class name="RooBetaFunc_v2" />
 	<class name="RooCB" />
 	<class name="RooHMDiphoton" />
+	<class name="RooDoubleCBInterpolate" />
 	<class name="RooCPSHighMassGGH" />
 	<class name="RooCPSHighMassGGHNoInterf" />
 	<class name="RooCPSHighMassVBF" />
