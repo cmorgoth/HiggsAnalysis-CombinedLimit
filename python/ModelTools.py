@@ -68,7 +68,9 @@ class ModelBuilderBase():
         if self.options.bin: self.factory_(vardef);
         else: self.out.write(vardef+";\n");
     def doExp(self,name,expression,vars):
-        if self.options.bin: self.factory_('expr::%s("%s",%s)'%(name,expression,vars));
+        if self.options.bin:
+            print name, expression, vars
+            self.factory_('expr::%s("%s",%s)'%(name,expression,vars));
         else: self.out.write('%s = expr::%s("%s",%s)'%(name,name,expression,vars)+";\n");
     def doSet(self,name,vars):
         if self.options.bin: self.out.defineSet(name,vars)

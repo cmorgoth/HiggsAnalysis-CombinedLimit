@@ -43,6 +43,8 @@
 	<class name="RooCB" />
 	<class name="RooHMDiphoton" />
 	<class name="RooDoubleCBInterpolate" />
+	<class name="RooIntepolateDSCB_W0p014_Spin0_EBEB" />
+	<class name="RooIntepolateDSCB_W0p014_Spin0_EBEE" />
 	<class name="RooCPSHighMassGGH" />
 	<class name="RooCPSHighMassGGHNoInterf" />
 	<class name="RooCPSHighMassVBF" />
